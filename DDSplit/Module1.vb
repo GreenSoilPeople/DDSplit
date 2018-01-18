@@ -8,9 +8,6 @@ Module Module1
     Private OutputFileTVA As String
 
     Sub Main(args As String())
-        'Console.WriteLine("Hello World!")
-        'Console.WriteLine($"arg0:{args(0)} arg1:{args(1)}")
-
 
         If ParseArgs(args) <> 0 Then Exit Sub
 
@@ -59,9 +56,10 @@ Module Module1
             Dim day As String = m1.Groups(1).Value.Substring(6, 2)
             Dim month As String = m1.Groups(1).Value.Substring(4, 2)
             Dim year As String = m1.Groups(1).Value.Substring(0, 4)
+            Dim suffix As String = m1.Groups(1).Value.Substring(8)
 
-            OutputFileBase = $"{OutputDir}\{day}_{month}_{year}_baza{Extension}"
-            OutputFileTVA = $"{OutputDir}\{day}_{month}_{year}_TVA{Extension}"
+            OutputFileBase = $"{OutputDir}\{day}_{month}_{year}_{suffix}_baza{Extension}"
+            OutputFileTVA = $"{OutputDir}\{day}_{month}_{year}_{suffix}_TVA{Extension}"
 
             If File.Exists(OutputFileBase) Then File.Delete(OutputFileBase)
             If File.Exists(OutputFileTVA) Then File.Delete(OutputFileTVA)
